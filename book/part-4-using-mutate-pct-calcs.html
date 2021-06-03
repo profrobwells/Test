@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide</title>
+  <meta name="description" content="Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide" />
+  
+  <meta name="twitter:description" content="Chapter 21 Part 4: Using Mutate, Pct Calcs | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+<meta name="author" content="Rob Wells - thanks to Yihui Xie" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="section-1.html"/>
+<link rel="next" href="part-5-trends-over-time.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Data Journalism - A Quick &amp; Practical Guide</a></li>
+<li class="chapter" data-level="1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html"><i class="fa fa-check"></i><b>1</b> Data Journalism - A Quick &amp; Practical Guide</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#Introduction_TOC"><i class="fa fa-check"></i><b>1.1</b> Outline - Introduction - Table of Contents</a></li>
+<li class="chapter" data-level="1.2" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#table-of-contents"><i class="fa fa-check"></i><b>1.2</b> Table of Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#introduction-to-data-analysis"><i class="fa fa-check"></i><b>1.3</b> Introduction to data analysis</a></li>
+<li class="chapter" data-level="1.4" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-2-data-analysis-tools"><i class="fa fa-check"></i><b>1.4</b> Section 2: Data Analysis Tools</a></li>
+<li class="chapter" data-level="1.5" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-3-r-for-data-journalists"><i class="fa fa-check"></i><b>1.5</b> Section 3: R for data journalists</a></li>
+<li class="chapter" data-level="1.6" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-4-publishing-your-work"><i class="fa fa-check"></i><b>1.6</b> Section 4: Publishing your work</a></li>
+<li class="chapter" data-level="1.7" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#appendix"><i class="fa fa-check"></i><b>1.7</b> Appendix</a></li>
+<li class="chapter" data-level="1.8" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#notes"><i class="fa fa-check"></i><b>1.8</b> NOTES</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#instructions-from-oer"><i class="fa fa-check"></i><b>1.8.1</b> Instructions from OER</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data-analysis-1.html"><a href="introduction-to-data-analysis-1.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data Analysis</a></li>
+<li class="chapter" data-level="3" data-path="organize-your-data.html"><a href="organize-your-data.html"><i class="fa fa-check"></i><b>3</b> Organize Your Data</a></li>
+<li class="chapter" data-level="4" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a></li>
+<li class="chapter" data-level="6" data-path="writing-about-data.html"><a href="writing-about-data.html"><i class="fa fa-check"></i><b>6</b> Writing About Data</a></li>
+<li class="chapter" data-level="7" data-path="excel-bootcamp.html"><a href="excel-bootcamp.html"><i class="fa fa-check"></i><b>7</b> Excel Bootcamp</a></li>
+<li class="chapter" data-level="8" data-path="basic-tableau.html"><a href="basic-tableau.html"><i class="fa fa-check"></i><b>8</b> Basic Tableau</a></li>
+<li class="chapter" data-level="9" data-path="flourish.html"><a href="flourish.html"><i class="fa fa-check"></i><b>9</b> Flourish</a></li>
+<li class="chapter" data-level="10" data-path="wordpress.html"><a href="wordpress.html"><i class="fa fa-check"></i><b>10</b> WordPress</a></li>
+<li class="chapter" data-level="11" data-path="datawrapper.html"><a href="datawrapper.html"><i class="fa fa-check"></i><b>11</b> Datawrapper</a></li>
+<li class="chapter" data-level="12" data-path="r-introduction.html"><a href="r-introduction.html"><i class="fa fa-check"></i><b>12</b> R Introduction</a></li>
+<li class="chapter" data-level="13" data-path="r-data-viz.html"><a href="r-data-viz.html"><i class="fa fa-check"></i><b>13</b> R Data Viz</a></li>
+<li class="chapter" data-level="14" data-path="part-6-chart-by-gender.html"><a href="part-6-chart-by-gender.html"><i class="fa fa-check"></i><b>14</b> Part 6: Chart By Gender</a></li>
+<li class="chapter" data-level="15" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>15</b> </a><ul>
+<li class="chapter" data-level="15.1" data-path="section.html"><a href="section.html#r-data-cleaning"><i class="fa fa-check"></i><b>15.1</b> # R Data Cleaning</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="section.html"><a href="section.html#reporting-on-homelessness-data-analysis-for-journalists"><i class="fa fa-check"></i><b>15.1.1</b> Reporting on Homelessness: Data Analysis for Journalists</a></li>
+<li class="chapter" data-level="15.1.2" data-path="section.html"><a href="section.html#jour-405v-jour-5003-spring-2020"><i class="fa fa-check"></i><b>15.1.2</b> Jour 405v, Jour 5003, Spring 2020</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="analysis-of-san-francisco-police-calls-for-service-data.html"><a href="analysis-of-san-francisco-police-calls-for-service-data.html"><i class="fa fa-check"></i><b>16</b> Analysis of San Francisco Police Calls for Service Data</a></li>
+<li class="chapter" data-level="17" data-path="part-1-quick-start.html"><a href="part-1-quick-start.html"><i class="fa fa-check"></i><b>17</b> Part 1: Quick Start</a></li>
+<li class="chapter" data-level="18" data-path="part-2-cleaning-analysis.html"><a href="part-2-cleaning-analysis.html"><i class="fa fa-check"></i><b>18</b> Part 2: Cleaning &amp; Analysis</a></li>
+<li class="chapter" data-level="19" data-path="part-3-cleaning-dispositions.html"><a href="part-3-cleaning-dispositions.html"><i class="fa fa-check"></i><b>19</b> Part 3: Cleaning Dispositions</a></li>
+<li class="chapter" data-level="20" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>20</b> </a></li>
+<li class="chapter" data-level="21" data-path="part-4-using-mutate-pct-calcs.html"><a href="part-4-using-mutate-pct-calcs.html"><i class="fa fa-check"></i><b>21</b> Part 4: Using Mutate, Pct Calcs</a></li>
+<li class="chapter" data-level="22" data-path="part-5-trends-over-time.html"><a href="part-5-trends-over-time.html"><i class="fa fa-check"></i><b>22</b> Part 5: Trends over time</a></li>
+<li class="chapter" data-level="23" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>23</b> –30–</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Journalism - A Quick &amp; Practical Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-4-using-mutate-pct-calcs" class="section level1">
+<h1><span class="header-section-number">Chapter 21</span> Part 4: Using Mutate, Pct Calcs</h1>
+<p>mutate - Create new column(s) in the data, or change existing column(s).</p>
+<p>mutate() adds new variables and preserves existing</p>
+<p>Example:
+mtcars &lt;- as.data.frame(mtcars)
+View(mtcars)</p>
+<p>mtcars2 &lt;- mtcars %&gt;% as_tibble() %&gt;% mutate(
+cyl2 = cyl * 2,
+cyl4 = cyl2 * 2
+)</p>
+<p>Process dates using lubidate</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1">SF &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb78-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">yearmo =</span> <span class="kw">format</span>(call_date, <span class="st">&quot;%Y-%m&quot;</span>))</a></code></pre></div>
+<p>Chart the number of calls by year and month</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1">SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(yearmo) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(yearmo) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb79-4" data-line-number="4"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> yearmo, <span class="dt">y =</span> n, <span class="dt">fill=</span>n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb79-7" data-line-number="7"><span class="st">  </span><span class="co">#Changes angle of x axis labels</span></a>
+<a class="sourceLine" id="cb79-8" data-line-number="8"><span class="st">  </span><span class="co">#coord_flip() +    #this makes it a horizontal bar chart instead of vertical</span></a>
+<a class="sourceLine" id="cb79-9" data-line-number="9"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Homeless Calls After 2017, San Francisco&quot;</span>, </a>
+<a class="sourceLine" id="cb79-10" data-line-number="10">       <span class="dt">subtitle =</span> <span class="st">&quot;SF PD Service Call Data by Month 2017-2019&quot;</span>,</a>
+<a class="sourceLine" id="cb79-11" data-line-number="11">       <span class="dt">caption =</span> <span class="st">&quot;Graphic by Wells&quot;</span>,</a>
+<a class="sourceLine" id="cb79-12" data-line-number="12">       <span class="dt">y=</span><span class="st">&quot;Number of Calls&quot;</span>,</a>
+<a class="sourceLine" id="cb79-13" data-line-number="13">       <span class="dt">x=</span><span class="st">&quot;Year&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>Percentage change per month</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">PCT_CHG_CALLS &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(original_crime_type_name, disposition, address, call_date2, yearmo) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="st">  </span><span class="kw">count</span>(yearmo) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">difference =</span> (n<span class="op">-</span><span class="kw">lag</span>(n))) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">pct_change =</span> (difference<span class="op">/</span><span class="kw">abs</span>(<span class="kw">lag</span>(n)))<span class="op">*</span><span class="dv">100</span>)</a></code></pre></div>
+<ul>
+<li><strong>Use grepl to search and tabulate</strong></li>
+</ul>
+<p>grep and grepl: see ??grep</p>
+<p><a href="http://www.endmemo.com/program/R/grepl.php" class="uri">http://www.endmemo.com/program/R/grepl.php</a></p>
+<p>Cleaning Sequence</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="co">#convert all text to lowercase</span></a>
+<a class="sourceLine" id="cb81-2" data-line-number="2">SF<span class="op">$</span>crime1 &lt;-<span class="st"> </span><span class="kw">tolower</span>(SF<span class="op">$</span>original_crime_type_name)</a></code></pre></div>
+<ul>
+<li><strong>Search for term, rename, put in new column called “cleaned”</strong></li>
+</ul>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1">x915 &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;915&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;homeless_complaint&quot;</span>)</a>
+<a class="sourceLine" id="cb82-4" data-line-number="4">x919 &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-5" data-line-number="5"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;919&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-6" data-line-number="6"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;sitting_lying&quot;</span>)</a>
+<a class="sourceLine" id="cb82-7" data-line-number="7">xsleep &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;sleep&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-9" data-line-number="9"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;sleep&quot;</span>)</a>
+<a class="sourceLine" id="cb82-10" data-line-number="10">xaggr &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-11" data-line-number="11"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;aggr&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;aggressive&quot;</span>)</a>
+<a class="sourceLine" id="cb82-13" data-line-number="13">xdrug &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-14" data-line-number="14"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;drug&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-15" data-line-number="15"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;drug&quot;</span>)</a>
+<a class="sourceLine" id="cb82-16" data-line-number="16">xhomeless &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-17" data-line-number="17"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;homeless_complaint&quot;</span>, crime2)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-18" data-line-number="18"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;homeless_complaint&quot;</span>)</a>
+<a class="sourceLine" id="cb82-19" data-line-number="19"><span class="co">#Moe, Brooke&#39;s Work: </span></a>
+<a class="sourceLine" id="cb82-20" data-line-number="20">xnoise &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-21" data-line-number="21"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;415&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-22" data-line-number="22"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;noise&quot;</span>)</a>
+<a class="sourceLine" id="cb82-23" data-line-number="23">xposs &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-24" data-line-number="24"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;poss&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-25" data-line-number="25"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;possession&quot;</span>)</a>
+<a class="sourceLine" id="cb82-26" data-line-number="26">xtrespasser &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-27" data-line-number="27"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;601&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-28" data-line-number="28"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;trespasser&quot;</span>)</a>
+<a class="sourceLine" id="cb82-29" data-line-number="29">xsolicit &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-30" data-line-number="30"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;920&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-31" data-line-number="31"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;solicit&quot;</span>)</a>
+<a class="sourceLine" id="cb82-32" data-line-number="32">xinterview &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-33" data-line-number="33"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;909&quot;</span>, original_crime_type_name)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb82-34" data-line-number="34"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;interview&quot;</span>)</a>
+<a class="sourceLine" id="cb82-35" data-line-number="35">xtent &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-36" data-line-number="36"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;tent&quot;</span>, crime1)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-37" data-line-number="37"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned=</span><span class="st">&quot;tent&quot;</span>)</a>
+<a class="sourceLine" id="cb82-38" data-line-number="38">xdog &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-39" data-line-number="39"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;dog&quot;</span>, crime1)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-40" data-line-number="40"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned=</span><span class="st">&quot;dog&quot;</span>)</a>
+<a class="sourceLine" id="cb82-41" data-line-number="41">xchopshop &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-42" data-line-number="42"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;chop shop&quot;</span>, crime1)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-43" data-line-number="43"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned=</span><span class="st">&quot;chopshop&quot;</span>)</a>
+<a class="sourceLine" id="cb82-44" data-line-number="44">xpanhandling &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-45" data-line-number="45"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;panhandling&quot;</span>, crime1)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-46" data-line-number="46"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned=</span><span class="st">&quot;panhandling&quot;</span>)</a>
+<a class="sourceLine" id="cb82-47" data-line-number="47">xmusic &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-48" data-line-number="48"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span> (<span class="st">&quot;music&quot;</span>, crime1)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb82-49" data-line-number="49"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned=</span><span class="st">&quot;music&quot;</span>)</a></code></pre></div>
+<p>Create new dataframe using rbind</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">new_total &lt;-<span class="st"> </span><span class="kw">rbind</span>(xhomeless, x915, x919, xaggr, xdrug, xsleep, xnoise, xposs, xtrespasser, xsolicit, xinterview, xtent, xdog,</a>
+<a class="sourceLine" id="cb83-2" data-line-number="2">                   xchopshop, xpanhandling, xmusic)</a></code></pre></div>
+<p>Count it up!</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">Total_Calls_Master &lt;-<span class="st"> </span>new_total <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(cleaned) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">#rename columns</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="kw">colnames</span>(Total_Calls_Master)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Complaints&quot;</span>, <span class="st">&quot;Number&quot;</span>)</a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="co">#export</span></a>
+<a class="sourceLine" id="cb84-7" data-line-number="7"><span class="kw">write_csv</span>(Total_Calls_Master, <span class="st">&quot;Total_Calls_Master.csv&quot;</span>)</a></code></pre></div>
+<p>Make into html table</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="co">#install.packages(&quot;kableExtra&quot;)</span></a>
+<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">library</span>(kableExtra)</a></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;kableExtra&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     group_rows</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1"><span class="co">#This makes html tables called &quot;kables&quot;</span></a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">Total_Calls_Master <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Complaints
+</th>
+<th style="text-align:right;">
+Number
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+homeless_complaint
+</td>
+<td style="text-align:right;">
+153895
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sitting_lying
+</td>
+<td style="text-align:right;">
+3282
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+solicit
+</td>
+<td style="text-align:right;">
+262
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+trespasser
+</td>
+<td style="text-align:right;">
+100
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+sleep
+</td>
+<td style="text-align:right;">
+77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+interview
+</td>
+<td style="text-align:right;">
+75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+drug
+</td>
+<td style="text-align:right;">
+52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+noise
+</td>
+<td style="text-align:right;">
+27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+aggressive
+</td>
+<td style="text-align:right;">
+18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dog
+</td>
+<td style="text-align:right;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+tent
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+music
+</td>
+<td style="text-align:right;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+chopshop
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+panhandling
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+possession
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+</tbody>
+</table>
+<p>Export from Viewer as .png</p>
+<ul>
+<li><strong>Task: Tabulate complaints by day of the week</strong></li>
+</ul>
+<p><a href="https://github.com/profrobwells/Data-Analysis-Class-Jour-405v-5003/blob/master/Readings/dealing-with-dates.pdf" class="uri">https://github.com/profrobwells/Data-Analysis-Class-Jour-405v-5003/blob/master/Readings/dealing-with-dates.pdf</a></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">SF &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(call_date, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>))</a></code></pre></div>
+<p>Build a summary table with the days of the week with the greatest
+number of calls. Create a graphic. Then build a table to see if the complaints vary by day</p>
+<p>Below from Matthew Moore, Katy Seiter, Wells edited</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">SF &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">weekday =</span> <span class="kw">wday</span>(call_date, <span class="dt">label=</span><span class="ot">TRUE</span>, <span class="dt">abbr=</span><span class="ot">FALSE</span>))</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3">Weekday_Count &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="st">  </span><span class="kw">select</span>(weekday, crime_id) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="st">  </span><span class="kw">count</span>(weekday) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
+<p>Graphic of calls by weekdays</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">Weekday_Count <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weekday, <span class="dt">y =</span> n, <span class="dt">fill=</span>n)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="st">  </span><span class="co">#Changes angle of x axis labels</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="st">  </span><span class="co">#coord_flip() +    #this makes it a horizontal bar chart instead of vertical</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Homeless Calls By Weekday in San Francisco&quot;</span>, </a>
+<a class="sourceLine" id="cb91-8" data-line-number="8">       <span class="dt">subtitle =</span> <span class="st">&quot;SF PD Service Call Data 2017-2019&quot;</span>,</a>
+<a class="sourceLine" id="cb91-9" data-line-number="9">       <span class="dt">caption =</span> <span class="st">&quot;Graphic by Moore and Seiter&quot;</span>,</a>
+<a class="sourceLine" id="cb91-10" data-line-number="10">       <span class="dt">y=</span><span class="st">&quot;Number of Calls&quot;</span>,</a>
+<a class="sourceLine" id="cb91-11" data-line-number="11">       <span class="dt">x=</span><span class="st">&quot;Weekday&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p>Create a Bubble graphic</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> Weekday_Count) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb92-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> weekday, <span class="dt">y =</span> n, <span class="dt">size =</span> n, <span class="dt">color =</span> n), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">90</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb92-4" data-line-number="4"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Homeless By Weekday in San Francisco&quot;</span>, </a>
+<a class="sourceLine" id="cb92-5" data-line-number="5">       <span class="dt">subtitle =</span> <span class="st">&quot;SF PD Service Call Data 2017-2019: Source: SFPD&quot;</span>,</a>
+<a class="sourceLine" id="cb92-6" data-line-number="6">       <span class="dt">caption =</span> <span class="st">&quot;Graphic by Moore and Seiter&quot;</span>,</a>
+<a class="sourceLine" id="cb92-7" data-line-number="7">       <span class="dt">y=</span><span class="st">&quot;Number of Calls&quot;</span>,</a>
+<a class="sourceLine" id="cb92-8" data-line-number="8">       <span class="dt">x=</span><span class="st">&quot;Weekday&quot;</span>)</a></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
+<p>Improved bubble chart</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="co"># ggplot(Weekday_Count, aes(x = weekday, y = n)) +</span></a>
+<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="co">#   xlab(&quot;Weekday&quot;) +</span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="co">#   ylab(&quot;Number of Calls&quot;) +</span></a>
+<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="co">#   theme_minimal(base_size = 12, base_family = &quot;Georgia&quot;) +</span></a>
+<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="co">#   geom_point(aes(size = n, color = n), alpha = 0.7, show.legend = FALSE) +</span></a>
+<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="co">#   scale_size_area(guide = FALSE, max_size = 15) +</span></a>
+<a class="sourceLine" id="cb93-7" data-line-number="7"><span class="co">#   labs(title = &quot;Homeless By Weekday in San Francisco&quot;, </span></a>
+<a class="sourceLine" id="cb93-8" data-line-number="8"><span class="co">#        subtitle = &quot;SF PD Service Call Data 2017-2019: Source: SFPD&quot;,</span></a>
+<a class="sourceLine" id="cb93-9" data-line-number="9"><span class="co">#        caption = &quot;Graphic by Moore and Seiter&quot;)</span></a></code></pre></div>
+<ul>
+<li><strong>Task #3: Calls vs Dispositions</strong></li>
+</ul>
+<p>What calls resulted in arrests? What calls resulted in citations?</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">Action2 &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(crime_id, original_crime_type_name, disposition) </a></code></pre></div>
+<p>We need to pair the crime type and disposition and then count them</p>
+<p>From Michael Adkison:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">callsarrest &lt;-<span class="st"> </span>Action2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">grepl</span>(<span class="st">&quot;ARR&quot;</span>, disposition)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb95-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">cleaned =</span> <span class="st">&quot;Arrest&quot;</span>)</a></code></pre></div>
+<p>To quickly format into percents, load formattable</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="co">#install.packages(&quot;formattable&quot;)</span></a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="kw">library</span>(formattable)</a>
+<a class="sourceLine" id="cb96-3" data-line-number="3">callsarrest2 &lt;-<span class="st"> </span>callsarrest <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="st">  </span><span class="kw">arrange</span>(original_crime_type_name, disposition) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="st">  </span><span class="kw">count</span>(original_crime_type_name) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb96-6" data-line-number="6"><span class="co">#mutate(PctTotal = (n/441)) %&gt;% </span></a>
+<a class="sourceLine" id="cb96-7" data-line-number="7"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a>
+<a class="sourceLine" id="cb96-8" data-line-number="8"><span class="kw">colnames</span>(callsarrest2)[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Complaints&quot;</span>, <span class="st">&quot;Arrests&quot;</span>) </a></code></pre></div>
+<p>Build a table to translate the Cop Speak to English:</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">clean &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Homeless Complaint&#39;</span>=<span class="st">&quot;homeless_complaint&quot;</span>, <span class="dt">homeless_complaint=</span><span class="st">&quot;homeless_complaint&quot;</span>, <span class="st">&#39;915&#39;</span>=<span class="st">&quot;homeless_complaint&quot;</span>, </a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">           <span class="st">&#39;919&#39;</span>=<span class="st">&quot;Sit_lying&quot;</span>, <span class="st">&#39;920&#39;</span>=<span class="st">&quot;Aggress_solicit&quot;</span>, <span class="st">&#39;915s&#39;</span>=<span class="st">&quot;homeless_complaint&quot;</span>, <span class="st">&#39;915x&#39;</span>=<span class="st">&quot;homeless_complaint&quot;</span>, </a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">           <span class="dt">drugs=</span><span class="st">&quot;drugs&quot;</span>, <span class="st">&#39;601&#39;</span>=<span class="st">&quot;trespasser&quot;</span>, <span class="dt">poss=</span><span class="st">&quot;poss&quot;</span>, <span class="dt">aggressive=</span><span class="st">&quot;aggressive&quot;</span>, <span class="st">&#39;811&#39;</span>=<span class="st">&quot;intoxicated&quot;</span>, </a>
+<a class="sourceLine" id="cb97-4" data-line-number="4">           <span class="st">&#39;Drugs / 915&#39;</span>=<span class="st">&quot;Drugs&quot;</span>, <span class="st">&#39;Drugs/915&#39;</span>=<span class="st">&quot;Drugs&quot;</span>)</a></code></pre></div>
+<p>This scans “disposition”, finds ABA and replaces with Abated, finds ARR, replaces with Arrest, etc
+callsarrest2<span class="math inline">\(Complaints &lt;- as.character(clean[callsarrest2\)</span>Complaints])</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">callsarrest3 &lt;-<span class="st"> </span>callsarrest2 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(Complaints, Arrests) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(Complaints) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">sum</span>(Arrests)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">PctTotal =</span> (total<span class="op">/</span><span class="dv">441</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(total))</a>
+<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="kw">colnames</span>(callsarrest3)[<span class="dv">2</span>] &lt;-<span class="st"> &quot;Arrests&quot;</span> </a>
+<a class="sourceLine" id="cb98-8" data-line-number="8">callsarrest3<span class="op">$</span>PctTotal &lt;-<span class="st"> </span><span class="kw">percent</span>(callsarrest3<span class="op">$</span>PctTotal)</a>
+<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="co">#This makes kables</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10">callsarrest3 <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb98-11" data-line-number="11"><span class="st">  </span><span class="kw">kable</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb98-12" data-line-number="12"><span class="st">  </span><span class="kw">kable_styling</span>(<span class="st">&quot;striped&quot;</span>)</a></code></pre></div>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Complaints
+</th>
+<th style="text-align:right;">
+Arrests
+</th>
+<th style="text-align:right;">
+PctTotal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Homeless Complaint
+</td>
+<td style="text-align:right;">
+412
+</td>
+<td style="text-align:right;">
+93.42%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+915
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+4.31%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+919
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0.91%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+920
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0.45%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+601 / 915
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.23%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+915 / 909
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.23%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drugs / 915
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.23%
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Drugs/915
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.23%
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="section-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="part-5-trends-over-time.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/12-R_Data_Cleaning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

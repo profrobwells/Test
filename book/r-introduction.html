@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide</title>
+  <meta name="description" content="Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide" />
+  
+  <meta name="twitter:description" content="Chapter 12 R Introduction | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+<meta name="author" content="Rob Wells - thanks to Yihui Xie" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="datawrapper.html"/>
+<link rel="next" href="r-data-viz.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Data Journalism - A Quick &amp; Practical Guide</a></li>
+<li class="chapter" data-level="1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html"><i class="fa fa-check"></i><b>1</b> Data Journalism - A Quick &amp; Practical Guide</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#Introduction_TOC"><i class="fa fa-check"></i><b>1.1</b> Outline - Introduction - Table of Contents</a></li>
+<li class="chapter" data-level="1.2" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#table-of-contents"><i class="fa fa-check"></i><b>1.2</b> Table of Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#introduction-to-data-analysis"><i class="fa fa-check"></i><b>1.3</b> Introduction to data analysis</a></li>
+<li class="chapter" data-level="1.4" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-2-data-analysis-tools"><i class="fa fa-check"></i><b>1.4</b> Section 2: Data Analysis Tools</a></li>
+<li class="chapter" data-level="1.5" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-3-r-for-data-journalists"><i class="fa fa-check"></i><b>1.5</b> Section 3: R for data journalists</a></li>
+<li class="chapter" data-level="1.6" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-4-publishing-your-work"><i class="fa fa-check"></i><b>1.6</b> Section 4: Publishing your work</a></li>
+<li class="chapter" data-level="1.7" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#appendix"><i class="fa fa-check"></i><b>1.7</b> Appendix</a></li>
+<li class="chapter" data-level="1.8" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#notes"><i class="fa fa-check"></i><b>1.8</b> NOTES</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#instructions-from-oer"><i class="fa fa-check"></i><b>1.8.1</b> Instructions from OER</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data-analysis-1.html"><a href="introduction-to-data-analysis-1.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data Analysis</a></li>
+<li class="chapter" data-level="3" data-path="organize-your-data.html"><a href="organize-your-data.html"><i class="fa fa-check"></i><b>3</b> Organize Your Data</a></li>
+<li class="chapter" data-level="4" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a></li>
+<li class="chapter" data-level="6" data-path="writing-about-data.html"><a href="writing-about-data.html"><i class="fa fa-check"></i><b>6</b> Writing About Data</a></li>
+<li class="chapter" data-level="7" data-path="excel-bootcamp.html"><a href="excel-bootcamp.html"><i class="fa fa-check"></i><b>7</b> Excel Bootcamp</a></li>
+<li class="chapter" data-level="8" data-path="basic-tableau.html"><a href="basic-tableau.html"><i class="fa fa-check"></i><b>8</b> Basic Tableau</a></li>
+<li class="chapter" data-level="9" data-path="flourish.html"><a href="flourish.html"><i class="fa fa-check"></i><b>9</b> Flourish</a></li>
+<li class="chapter" data-level="10" data-path="wordpress.html"><a href="wordpress.html"><i class="fa fa-check"></i><b>10</b> WordPress</a></li>
+<li class="chapter" data-level="11" data-path="datawrapper.html"><a href="datawrapper.html"><i class="fa fa-check"></i><b>11</b> Datawrapper</a></li>
+<li class="chapter" data-level="12" data-path="r-introduction.html"><a href="r-introduction.html"><i class="fa fa-check"></i><b>12</b> R Introduction</a></li>
+<li class="chapter" data-level="13" data-path="r-data-viz.html"><a href="r-data-viz.html"><i class="fa fa-check"></i><b>13</b> R Data Viz</a></li>
+<li class="chapter" data-level="14" data-path="part-6-chart-by-gender.html"><a href="part-6-chart-by-gender.html"><i class="fa fa-check"></i><b>14</b> Part 6: Chart By Gender</a></li>
+<li class="chapter" data-level="15" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>15</b> </a><ul>
+<li class="chapter" data-level="15.1" data-path="section.html"><a href="section.html#r-data-cleaning"><i class="fa fa-check"></i><b>15.1</b> # R Data Cleaning</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="section.html"><a href="section.html#reporting-on-homelessness-data-analysis-for-journalists"><i class="fa fa-check"></i><b>15.1.1</b> Reporting on Homelessness: Data Analysis for Journalists</a></li>
+<li class="chapter" data-level="15.1.2" data-path="section.html"><a href="section.html#jour-405v-jour-5003-spring-2020"><i class="fa fa-check"></i><b>15.1.2</b> Jour 405v, Jour 5003, Spring 2020</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="analysis-of-san-francisco-police-calls-for-service-data.html"><a href="analysis-of-san-francisco-police-calls-for-service-data.html"><i class="fa fa-check"></i><b>16</b> Analysis of San Francisco Police Calls for Service Data</a></li>
+<li class="chapter" data-level="17" data-path="part-1-quick-start.html"><a href="part-1-quick-start.html"><i class="fa fa-check"></i><b>17</b> Part 1: Quick Start</a></li>
+<li class="chapter" data-level="18" data-path="part-2-cleaning-analysis.html"><a href="part-2-cleaning-analysis.html"><i class="fa fa-check"></i><b>18</b> Part 2: Cleaning &amp; Analysis</a></li>
+<li class="chapter" data-level="19" data-path="part-3-cleaning-dispositions.html"><a href="part-3-cleaning-dispositions.html"><i class="fa fa-check"></i><b>19</b> Part 3: Cleaning Dispositions</a></li>
+<li class="chapter" data-level="20" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>20</b> </a></li>
+<li class="chapter" data-level="21" data-path="part-4-using-mutate-pct-calcs.html"><a href="part-4-using-mutate-pct-calcs.html"><i class="fa fa-check"></i><b>21</b> Part 4: Using Mutate, Pct Calcs</a></li>
+<li class="chapter" data-level="22" data-path="part-5-trends-over-time.html"><a href="part-5-trends-over-time.html"><i class="fa fa-check"></i><b>22</b> Part 5: Trends over time</a></li>
+<li class="chapter" data-level="23" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>23</b> –30–</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Journalism - A Quick &amp; Practical Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-introduction" class="section level1">
+<h1><span class="header-section-number">Chapter 12</span> R Introduction</h1>
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong><span class="has-inline-color has-vivid-cyan-blue-color">R and R Studio</span></strong>
+
+<img class="wp-image-6982" style="width: 800px;" src="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8.png" alt="">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8.png"></a>
+
+<code>Install R and R Studio. This is free and open source software. It is not large and doesn't tax the memory a lot. R runs on Windows, Mac and Linux, but this course is designed for the Mac version. If you use Windows, there may be variations in the lessons and instructions. Please see me for questions. Installing R is a two-step process: 1) Install R, the actual program 2) Install RStudio, a common interface 1) Download the most recent version of R for Mac:</code>
+<a href="https://mirrors.nics.utk.edu/cran/bin/macosx/R-4.0.2.pkg">https://mirrors.nics.utk.edu/cran/bin/macosx/R-4.0.2.pkg</a>
+<code>--If you have a Windows computer, go to:</code>
+<a href="https://mirrors.nics.utk.edu/cran/bin/windows/base/R-4.0.2-win.exe">https://mirrors.nics.utk.edu/cran/bin/windows/base/R-4.0.2-win.exe</a>
+<code>Accept all of the default settings for Mac. 2) Install RStudio, the interface we use to manage and create R code. Download the open source edition of R Studio desktop and follow the prompts to install it.</code>
+<a href="https://rstudio.com/products/rstudio/download/#download">https://rstudio.com/products/rstudio/download/#download</a>
+<code>Good instructions for installing R</code>
+<a href="http://www.machlis.com/R4Journalists/download-r-and-rstudio.html">http://www.machlis.com/R4Journalists/download-r-and-rstudio.html</a>
+<code>Good overview of the program</code>
+<a href="https://docs.google.com/presentation/d/1O0eFLypJLP-PAC63Ghq2QURAnhFo6Dxc7nGt4y_l90s/edit#slide=id.p">https://docs.google.com/presentation/d/1O0eFLypJLP-PAC63Ghq2QURAnhFo6Dxc7nGt4y_l90s/edit#slide=id.p</a></pre>
+<!-- /wp:verse -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><span class="has-inline-color has-vivid-cyan-blue-color"><strong>Start Here
+</strong></span><code>Basic tutorial on R:</code>
+<a href="https://profrobwells.github.io/Guest_Lectures/Intro_To_R/R1_Intro-to-R.html">https://profrobwells.github.io/Guest_Lectures/Intro_To_R/R1_Intro-to-R.html</a>
+
+<strong>Download the code and try it yourself</strong>
+<code>(Left click, download, remove.txt extension)</code>
+<a href="https://github.com/profrobwells/CovidFall2020/raw/master/Exercises/R1_Intro%20to%20R.Rmd">https://github.com/profrobwells/CovidFall2020/raw/master/Exercises/R1_Intro%20to%20R.Rmd</a>
+
+
+<strong>Reading</strong>
+<code>Machlis, Sharon. Practical R for Mass Communications and Journalism. Chapman &amp; Hall/CRC The R Series. 2018. ISBN 9781138726918 https://www.amazon.com/gp/search?keywords=9781138726918 </code>
+
+<code>Ch. 1, Introduction</code>
+<code>Ch. 3, See How Much You Can Do in a Few Lines of Code </code>
+<code>Chapter 2: Get Started With R in a Few Easy Steps Here is the link to the firts six chapters for free</code>
+<a href="http://www.machlis.com/PracticalR4Journalism/index.html">http://www.machlis.com/PracticalR4Journalism/index.html</a> 
+
+
+<strong>Advanced Corner</strong>
+<code>--Import Arkansascovid.com data and summarize Washington County trends</code>
+<a href="https://raw.githubusercontent.com/Arkansascovid/Main/master/master_file.csv">The master file</a></pre>
+<!-- /wp:verse -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong>Ch 1 &amp; 2 of Machlis: Key Points</strong>
+<code>Reproducible research Repetitive tasks in modern newsrooms. </code>
+<code>Employment reports, crime stats, budgets </code>
+
+<code>Variables - an R object </code>
+<code>Assignment operator &lt;- Case sensitive </code>
+<code>Vector: A vector can only have one type of data - all integers, all strings </code>
+<code>Dataframe - like a spreadsheet </code>
+<code>Save files - Don’t save workspace: because all of your variables will be stored and re-loaded the next time you launch RStudio. </code>
+<code>It’s too easy to forget about previously stored variables that can interfere with later work,</code>
+<strong>Software packages</strong>: tidyverse, rio, pacman
+</pre>
+<!-- /wp:verse -->
+<!-- wp:image {"id":31866,"width":1201,"height":676,"sizeSlug":"large","linkDestination":"media"} -->
+<figure class="wp-block-image size-large is-resized">
+<a href="https://wordpressua.uark.edu/datareporting/files/2021/03/Popular-R-libraries.png"><img src="https://wordpressua.uark.edu/datareporting/files/2021/03/Popular-R-libraries-400x225.png" alt="" class="wp-image-31866" width="1201" height="676"/></a>
+</figure>
+<!-- /wp:image -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong>Data Types and R</strong>
+<code>Machlis: 2.4.2 Data types you’re likely to use often</code></pre>
+<!-- /wp:verse -->
+<!-- wp:image {"id":31867,"width":1277,"height":728,"sizeSlug":"large","linkDestination":"media"} -->
+<figure class="wp-block-image size-large is-resized">
+<a href="https://wordpressua.uark.edu/datareporting/files/2021/03/Slide-Data-Structures-in-R.jpeg"><img src="https://wordpressua.uark.edu/datareporting/files/2021/03/Slide-Data-Structures-in-R-400x228.jpeg" alt="" class="wp-image-31867" width="1277" height="728"/></a>
+</figure>
+<!-- /wp:image -->
+<!-- wp:verse -->
+<pre class="wp-block-verse">Reference: Logical Operators in R</pre>
+<!-- /wp:verse -->
+<!-- wp:image {"id":31868,"width":1278,"height":744,"sizeSlug":"large","linkDestination":"media"} -->
+<figure class="wp-block-image size-large is-resized">
+<a href="https://wordpressua.uark.edu/datareporting/files/2021/03/Logical_operators.png"><img src="https://wordpressua.uark.edu/datareporting/files/2021/03/Logical_operators-400x233.png" alt="" class="wp-image-31868" width="1278" height="744"/></a>
+</figure>
+<!-- /wp:image -->
+<!-- wp:heading {"level":1} -->
+<h1>
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8.png"><img class="aligncenter  wp-image-6982" src="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8-320x112.png" alt="" width="266" height="93"></a>
+</h1>
+<!-- /wp:heading -->
+<!-- wp:heading {"level":1} -->
+<h1>
+Beginner’s guide to R: Introduction
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html">https://www.computerworld.com/article/2497143/business-intelligence/business-intelligence-beginner-s-guide-to-r-introduction.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"article-title"} -->
+<h1 class="article-title">
+RStudio IDE Easy Tricks You Might’ve Missed
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://rviews.rstudio.com/2016/11/11/easy-tricks-you-mightve-missed/">https://rviews.rstudio.com/2016/11/11/easy-tricks-you-mightve-missed/</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+How Do I?
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://smach.github.io/R4JournalismBook/HowDoI.html">https://smach.github.io/R4JournalismBook/HowDoI.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"title toc-ignore"} -->
+<h1 class="title toc-ignore">
+Packages
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://smach.github.io/R4JournalismBook/packages.html">https://smach.github.io/R4JournalismBook/packages.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading -->
+<h2>
+ Download R and RStudio
+</h2>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="http://www.machlis.com/R4Journalists/download-r-and-rstudio.html">http://www.machlis.com/R4Journalists/download-r-and-rstudio.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+You can download the most recent version of R at <a class="uri" href="https://www.r-project.org/">https://www.r-project.org/</a>, which is the home of R (formally known as the R Project for Statistical Computing). The R-project home page usually includes information about the latest versions of R. Don’t be put off by the sometimes odd nicknames for R versions, such as “Very, Very Secure Dishes” and “Bug in Your Hair” – the software is much more useful than you might assume from the nicknames. (The whimsical version names come from various Peanuts cartoons.)
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+There should also be a prominent link to download R. Click that download option and you should be taken to CRAN, the Comprehensive R Archive Network, and a list of CRAN servers, called mirrors, around the world. Pick a server and choose the <em>precompiled binary distribution</em> for your operating system. Once the file finishes downloading, install it like any other software program - run the .exe for Windows or .pkg for Mac.
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+You should be fine accepting all the Mac defaults. On Windows, you’ll need to decide whether you want the 32- or 64-bit R version. (Unless you’ve got a pretty old system, chances are you’ll want 64-bit.)
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+This is all you need to start running R, but I strongly recommend also installing RStudio, a free platform designed to make it easier and more enjoyable to create and run R code. Head to <a href="https://www.rstudio.com/">RStudio.com</a> and under products, look for RStudio and then RStudio <em>Desktop</em> (not Server), and download the free Open Source Edition version for your operating system. This, too, installs like a typical software program
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong>Important Reference Materials</strong><br><a href="https://wordpressua.uark.edu/datareporting/files/2018/10/Data-Structures-in-R-1wd5uem.pdf">Data Structures in R-1wd5uem</a><br><a href="https://wordpressua.uark.edu/datareporting/files/2018/10/Data-Importing-t7pkq5.pdf">Data Importing-t7pkq5</a><br><a href="https://wordpressua.uark.edu/datareporting/files/2018/10/Importing-CSVs-1w8mk8d.pdf">Importing CSVs-1w8mk8d</a><br><a href="https://wordpressua.uark.edu/datareporting/files/2018/10/ggplot2-cheatsheet-19yp3zd.pdf">ggplot2-cheatsheet-19yp3zd</a><br><br></pre>
+<!-- /wp:verse -->
+<!-- wp:nextpage -->
+<!--nextpage-->
+<!-- /wp:nextpage -->
+<!-- wp:heading {"textAlign":"center","level":1,"align":"center"} -->
+<h1 class="has-text-align-center">
+<strong>R NOTES THAT NEED TO BE CLEANED UP</strong>
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong>Class Assignment</strong><br>Read this R Script and follow along with the video lecture<br><a href="https://wordpressua.uark.edu/datareporting/files/2018/11/Basic-Pct-Chart-in-R-1ovd5x8.r">Basic Pct Chart in R</a><br>&nbsp;Task 1: Create an R script with the commands used to build these charts, including<br>&nbsp;loading of libraries, setting working directory, loading files<br>&nbsp;Task 2: Create a chart illustrating the percentage change for the top 10 schools, 2012-2016.<br>&nbsp;Export a .png file<br>&nbsp;Task 3: Create a chart illustrating the percentage change for the bottom 10 schools, 2012-2016<br>&nbsp;Do not chart Null Values! Your chart must have data for 10 schools<br>&nbsp;Export a .png file<br>&nbsp;Task 4: Upload the two charts in .png files and the R script to WordPress<br>&nbsp;by Thursday, 11:59 p.m. 30 points</pre>
+<!-- /wp:verse -->
+<!-- wp:verse -->
+<pre class="wp-block-verse"><strong>Exercises</strong>
+<code>Using R to Shorten, Simplify the Master File</code>
+<a href="https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd">https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd</a>
+<strong>Resources</strong>
+**Dplyr Presentation*
+Five basic verbs filter() select() arrange() mutate() summarize() plus group_by()
+
+Due Friday
+<code>Flourish Workbook Updates</code>
+Reading
+<code>Machlis: Ch. 8 Analyze data by groups Transforming and Analyzing Data dplyr.pdf, Andrew Ba Tran, Washington Post:</code>
+<a href="https://github.com/profrobwells/CovidFall2020/blob/master/Reading/Transforming%20and%20Analyzing%20Data%20dplyr.pdf">https://github.com/profrobwells/CovidFall2020/blob/master/Reading/Transforming%20and%20Analyzing%20Data%20dplyr.pdf</a>
+<a href="http://learn.r-journalism.com/en/wrangling/dplyr/dplyr/">http://learn.r-journalism.com/en/wrangling/dplyr/dplyr/</a>
+Weekend Memo
+<code>250 Words with Sources: Story Pitch #2</code>
+Assignment 2. Story with Interactive Graphic. Due Oct 21
+<code>Students will gather, analyze and visualize Arkansascovid data, primarily with R Studio. Students will produce publication-ready graphics in Flourish from data. Stories will be footnoted and ready for fact checking. R script due with story. Write the story Google Doc, Not Word. Make sure sharing is enabled.</code>
+
+
+Week #9: Slicing, Dicing with Dplyr
+
+Monday Oct. 19
+<code>Stories Due Saturday, Oct 24 Schedule Demographic data Flourish R exercises R Exercises Due Wednesday</code>
+<strong>Schedule</strong>
+<a href="https://docs.google.com/spreadsheets/d/1gvm3BuS83NRbsx0pS_PuYTFytN4sPS3B9Xhq-6gnu6c/edit#gid=0">https://docs.google.com/spreadsheets/d/1gvm3BuS83NRbsx0pS_PuYTFytN4sPS3B9Xhq-6gnu6c/edit#gid=0</a>
+<code>Abby training on Data Update</code>
+–<strong>Exercises</strong>
+<code>Using R to Shorten, Simplify the Master File</code>
+<a href="https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd">https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd</a>
+<strong>You are in Dplyr bootcamp!</strong>
+DPLYR BOOT CAMP 5th Lesson 8-21-2020.Rmd Make a Dplyr Cheat Sheet
+Read Before Next Class
+<code>Joining Dataframes in R</code>
+<a href="https://www.youtube.com/watch?v=gLg4D9bMIyc&amp;t=13s">https://www.youtube.com/watch?v=gLg4D9bMIyc&amp;t=13s</a>
+Ch. 7 Two or more data sets
+<code>Data Wrangling</code>
+<a href="http://learn.r-journalism.com/en/wrangling/">http://learn.r-journalism.com/en/wrangling/</a>
+<code>Joins in R:</code>
+<a href="https://bit.ly/2OFnGJ6">https://bit.ly/2OFnGJ6</a>
+
+
+Wednesday, Oct. 21 R and Flourish
+<strong>Agenda</strong>
+<code>White House Report Stories Due Saturday, Oct 24 R Tables Flourish</code>
+–<strong>Exercises</strong>
+<code>Using R for Math</code>
+<a href="https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd">https://github.com/profrobwells/CovidFall2020/blob/master/Exercises/Slicing-Dicing%20Data%2010-14-2020.Rmd</a></pre>
+<!-- /wp:verse -->
+<!-- wp:nextpage -->
+<!--nextpage-->
+<!-- /wp:nextpage -->
+<!-- wp:image {"align":"center","id":6982,"linkDestination":"custom"} -->
+<div class="wp-block-image">
+<figure class="aligncenter">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8.png"><img src="https://wordpressua.uark.edu/datareporting/files/2018/03/RStudio-Logo-Blue-Gradient-1c40hm8-320x112.png" alt="" class="wp-image-6982"/></a>
+</figure>
+</div>
+<!-- /wp:image -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+Today’s set of tasks:
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/March-29-class-2lrqupg.r">March 29 class-2lrqupg</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+Data
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/US-Ark-Counties-Poverty-ACS_16_5YR_DP03-Jan-24-y46vv7.xlsx">US Ark Counties Poverty ACS_16_5YR_DP03-Jan 24-y46vv7</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+Race Poverty Set
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/ACS_16_5YR_S1701_with_ann-28nvp6q.csv">ACS_16_5YR_S1701_with_ann-28nvp6q</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+File Header Definitions
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center">
+<a href="https://wordpressua.uark.edu/datareporting/files/2018/03/ACS_16_5YR_S1701_metadata-1on99rr.csv">ACS_16_5YR_S1701_metadata-1on99rr</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"public"} -->
+<h1 class="public">
+<strong><a href="https://github.com/smach/R4JournalismBook" data-pjax="#js-repo-pjax-container">R4JournalismBook</a></strong>
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://github.com/smach/R4JournalismBook">https://github.com/smach/R4JournalismBook</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://smach.github.io/R4JournalismBook/booklinks.html">https://smach.github.io/R4JournalismBook/booklinks.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:heading {"level":1,"className":"title toc-ignore"} -->
+<h1 class="title toc-ignore">
+Functions
+</h1>
+<!-- /wp:heading -->
+<!-- wp:paragraph -->
+<p>
+<a href="https://smach.github.io/R4JournalismBook/functions.html">https://smach.github.io/R4JournalismBook/functions.html</a>
+</p>
+<!-- /wp:paragraph -->
+<!-- wp:verse -->
+<pre class="wp-block-verse">Here is the answer to the GGPLOT Exercise<br> <a href="https://wordpressua.uark.edu/datareporting/files/2018/11/Basic-Pct-KEY-Chart-in-R-2ndxc07.r">Basic Pct KEY Chart in R-2ndxc07</a><br><br><br>Several of you used incorrect data from 2016 and came out with this ranking:<br> ITT Technical Institute-Little Rock <br> Philander Smith College <br> Bryan University <br> College of the Ouachitas <br> Arkansas State University-Main Campus <br> Arkansas State University-Mountain Home <br> Arkansas Tech University <br> Central Baptist College <br> South Arkansas Community College <br> Searcy Beauty College <br> &nbsp;<br> But using the latest 2016 data from CollegeScorecard arrives at this ranking:<br> ITT Technical Institute-Little Rock <br> College of the Ouachitas <br> Bryan University <br> Arkansas State University-Main Campus <br> Arkansas State University-Mountain Home <br> Philander Smith College <br> Arkansas Tech University <br> Searcy Beauty College <br> Central Baptist College <br> Arthur's Beauty College Inc-Fort Smith <br> &nbsp;<br> &nbsp;<br> See the data<br> <a href="https://wordpressua.uark.edu/datareporting/files/2018/11/Top-10-Using-Old-College-Scorecard-Data-2iw2xe1.xlsx">Top 10 Using Old College Scorecard Data-2iw2xe1</a></pre>
+<!-- /wp:verse -->
+[et_pb_section bb_built=“1”][et_pb_row][et_pb_column type=“4_4”][et_pb_text admin_label=“Key Resources for R” _builder_version=“3.17.2”]
+<h1 style="text-align: center;">
+You will be using these materials
+</h1>
+<h1 style="text-align: center;">
+a lot during the course of the semester.
+</h1>
+Machlis, Sharon. Practical R for Mass Communication and Journalism. Chapman &amp; Hall/CRC, 2018. <a href="http://www.machlis.com/R4Journalists/."><a href="http://www.machlis.com/R4Journalists/" class="uri">http://www.machlis.com/R4Journalists/</a>.</a>
+<h6 class="article-title">
+RStudio IDE Easy Tricks You Might’ve Missed
+<a href="https://rviews.rstudio.com/2016/11/11/easy-tricks-you-mightve-missed/" class="uri">https://rviews.rstudio.com/2016/11/11/easy-tricks-you-mightve-missed/</a>
+</h6>
+How Do I?
+<a href="https://smach.github.io/R4JournalismBook/HowDoI.html" class="uri">https://smach.github.io/R4JournalismBook/HowDoI.html</a>
+<h6 class="title toc-ignore">
+Functions: 
+<a href="https://smach.github.io/R4JournalismBook/functions.html" class="uri">https://smach.github.io/R4JournalismBook/functions.html</a>
+</h6>
+<h6 class="title toc-ignore">
+Packages:
+<a href="https://smach.github.io/R4JournalismBook/packages.html" class="uri">https://smach.github.io/R4JournalismBook/packages.html</a>
+</h6>
+<p> </p>
+<p>[/et_pb_text][/et_pb_column][/et_pb_row][/et_pb_section]</p>
+<p><strong>R and R Studio</strong></p>
+<p><img src="Images/RStudio-Logo-Blue-Gradient.png" width="300" height="100" /></p>
+<pre><code>Install R and R Studio.
+
+This is free and open source software. It is not large and doesn&#39;t tax the memory a lot. 
+R runs on Windows, Mac and Linux, but this course is designed for the Mac version. 
+If you use Windows, there may be variations in the lessons and instructions. Please see me      for questions.
+
+Installing R is a two-step process: 
+1) Install R, the actual program
+2) Install RStudio, a common interface 
+
+1) Download the most recent version of R for Mac:         </code></pre>
+<p><a href="https://mirrors.nics.utk.edu/cran/bin/macosx/R-4.0.2.pkg" class="uri">https://mirrors.nics.utk.edu/cran/bin/macosx/R-4.0.2.pkg</a></p>
+<pre><code>--If you have a Windows computer, go to: </code></pre>
+<p><a href="https://mirrors.nics.utk.edu/cran/bin/windows/base/R-4.0.2-win.exe" class="uri">https://mirrors.nics.utk.edu/cran/bin/windows/base/R-4.0.2-win.exe</a></p>
+<pre><code>Accept all of the default settings for Mac.
+
+ 2) Install RStudio, the interface we use to manage and create R code. Download the open         source edition of R Studio desktop and follow the prompts to install it.   </code></pre>
+<p><a href="https://rstudio.com/products/rstudio/download/#download" class="uri">https://rstudio.com/products/rstudio/download/#download</a></p>
+<pre><code> Good instructions for installing R</code></pre>
+<p><a href="http://www.machlis.com/R4Journalists/download-r-and-rstudio.html" class="uri">http://www.machlis.com/R4Journalists/download-r-and-rstudio.html</a></p>
+<pre><code>Good overview of the program</code></pre>
+<p><a href="https://docs.google.com/presentation/d/1O0eFLypJLP-PAC63Ghq2QURAnhFo6Dxc7nGt4y_l90s/edit#slide=id.p" class="uri">https://docs.google.com/presentation/d/1O0eFLypJLP-PAC63Ghq2QURAnhFo6Dxc7nGt4y_l90s/edit#slide=id.p</a></p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="datawrapper.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-data-viz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/10-R_Intro.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
