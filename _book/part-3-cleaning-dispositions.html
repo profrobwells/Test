@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide</title>
+  <meta name="description" content="Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide" />
+  
+  <meta name="twitter:description" content="Chapter 19 Part 3: Cleaning Dispositions | Data Journalism - A Quick &amp; Practical Guide" />
+  
+
+<meta name="author" content="Rob Wells - thanks to Yihui Xie" />
+
+
+<meta name="date" content="2021-06-02" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="part-2-cleaning-analysis.html"/>
+<link rel="next" href="section-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Data Journalism - A Quick &amp; Practical Guide</a></li>
+<li class="chapter" data-level="1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html"><i class="fa fa-check"></i><b>1</b> Data Journalism - A Quick &amp; Practical Guide</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#Introduction_TOC"><i class="fa fa-check"></i><b>1.1</b> Outline - Introduction - Table of Contents</a></li>
+<li class="chapter" data-level="1.2" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#table-of-contents"><i class="fa fa-check"></i><b>1.2</b> Table of Contents</a></li>
+<li class="chapter" data-level="1.3" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#introduction-to-data-analysis"><i class="fa fa-check"></i><b>1.3</b> Introduction to data analysis</a></li>
+<li class="chapter" data-level="1.4" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-2-data-analysis-tools"><i class="fa fa-check"></i><b>1.4</b> Section 2: Data Analysis Tools</a></li>
+<li class="chapter" data-level="1.5" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-3-r-for-data-journalists"><i class="fa fa-check"></i><b>1.5</b> Section 3: R for data journalists</a></li>
+<li class="chapter" data-level="1.6" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#section-4-publishing-your-work"><i class="fa fa-check"></i><b>1.6</b> Section 4: Publishing your work</a></li>
+<li class="chapter" data-level="1.7" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#appendix"><i class="fa fa-check"></i><b>1.7</b> Appendix</a></li>
+<li class="chapter" data-level="1.8" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#notes"><i class="fa fa-check"></i><b>1.8</b> NOTES</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="data-journalism-a-quick-practical-guide-1.html"><a href="data-journalism-a-quick-practical-guide-1.html#instructions-from-oer"><i class="fa fa-check"></i><b>1.8.1</b> Instructions from OER</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="introduction-to-data-analysis-1.html"><a href="introduction-to-data-analysis-1.html"><i class="fa fa-check"></i><b>2</b> Introduction to Data Analysis</a></li>
+<li class="chapter" data-level="3" data-path="organize-your-data.html"><a href="organize-your-data.html"><i class="fa fa-check"></i><b>3</b> Organize Your Data</a></li>
+<li class="chapter" data-level="4" data-path="data-cleaning.html"><a href="data-cleaning.html"><i class="fa fa-check"></i><b>4</b> Data Cleaning</a></li>
+<li class="chapter" data-level="5" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>5</b> Data Visualization</a></li>
+<li class="chapter" data-level="6" data-path="writing-about-data.html"><a href="writing-about-data.html"><i class="fa fa-check"></i><b>6</b> Writing About Data</a></li>
+<li class="chapter" data-level="7" data-path="excel-bootcamp.html"><a href="excel-bootcamp.html"><i class="fa fa-check"></i><b>7</b> Excel Bootcamp</a></li>
+<li class="chapter" data-level="8" data-path="basic-tableau.html"><a href="basic-tableau.html"><i class="fa fa-check"></i><b>8</b> Basic Tableau</a></li>
+<li class="chapter" data-level="9" data-path="flourish.html"><a href="flourish.html"><i class="fa fa-check"></i><b>9</b> Flourish</a></li>
+<li class="chapter" data-level="10" data-path="wordpress.html"><a href="wordpress.html"><i class="fa fa-check"></i><b>10</b> WordPress</a></li>
+<li class="chapter" data-level="11" data-path="datawrapper.html"><a href="datawrapper.html"><i class="fa fa-check"></i><b>11</b> Datawrapper</a></li>
+<li class="chapter" data-level="12" data-path="r-introduction.html"><a href="r-introduction.html"><i class="fa fa-check"></i><b>12</b> R Introduction</a></li>
+<li class="chapter" data-level="13" data-path="r-data-viz.html"><a href="r-data-viz.html"><i class="fa fa-check"></i><b>13</b> R Data Viz</a></li>
+<li class="chapter" data-level="14" data-path="part-6-chart-by-gender.html"><a href="part-6-chart-by-gender.html"><i class="fa fa-check"></i><b>14</b> Part 6: Chart By Gender</a></li>
+<li class="chapter" data-level="15" data-path="section.html"><a href="section.html"><i class="fa fa-check"></i><b>15</b> </a><ul>
+<li class="chapter" data-level="15.1" data-path="section.html"><a href="section.html#r-data-cleaning"><i class="fa fa-check"></i><b>15.1</b> # R Data Cleaning</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="section.html"><a href="section.html#reporting-on-homelessness-data-analysis-for-journalists"><i class="fa fa-check"></i><b>15.1.1</b> Reporting on Homelessness: Data Analysis for Journalists</a></li>
+<li class="chapter" data-level="15.1.2" data-path="section.html"><a href="section.html#jour-405v-jour-5003-spring-2020"><i class="fa fa-check"></i><b>15.1.2</b> Jour 405v, Jour 5003, Spring 2020</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="analysis-of-san-francisco-police-calls-for-service-data.html"><a href="analysis-of-san-francisco-police-calls-for-service-data.html"><i class="fa fa-check"></i><b>16</b> Analysis of San Francisco Police Calls for Service Data</a></li>
+<li class="chapter" data-level="17" data-path="part-1-quick-start.html"><a href="part-1-quick-start.html"><i class="fa fa-check"></i><b>17</b> Part 1: Quick Start</a></li>
+<li class="chapter" data-level="18" data-path="part-2-cleaning-analysis.html"><a href="part-2-cleaning-analysis.html"><i class="fa fa-check"></i><b>18</b> Part 2: Cleaning &amp; Analysis</a></li>
+<li class="chapter" data-level="19" data-path="part-3-cleaning-dispositions.html"><a href="part-3-cleaning-dispositions.html"><i class="fa fa-check"></i><b>19</b> Part 3: Cleaning Dispositions</a></li>
+<li class="chapter" data-level="20" data-path="section-1.html"><a href="section-1.html"><i class="fa fa-check"></i><b>20</b> </a></li>
+<li class="chapter" data-level="21" data-path="part-4-using-mutate-pct-calcs.html"><a href="part-4-using-mutate-pct-calcs.html"><i class="fa fa-check"></i><b>21</b> Part 4: Using Mutate, Pct Calcs</a></li>
+<li class="chapter" data-level="22" data-path="part-5-trends-over-time.html"><a href="part-5-trends-over-time.html"><i class="fa fa-check"></i><b>22</b> Part 5: Trends over time</a></li>
+<li class="chapter" data-level="23" data-path="section-2.html"><a href="section-2.html"><i class="fa fa-check"></i><b>23</b> –30–</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Journalism - A Quick &amp; Practical Guide</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="part-3-cleaning-dispositions" class="section level1">
+<h1><span class="header-section-number">Chapter 19</span> Part 3: Cleaning Dispositions</h1>
+<p>Making our charts less ugly</p>
+<p>The disposition column is in cop-speak. We need to clean it up</p>
+<p>Step #1: Duplicate the column you want to mess with</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">SF<span class="op">$</span>disposition1 &lt;-<span class="st"> </span>SF<span class="op">$</span>disposition</a></code></pre></div>
+<p>Rename specific strings. Example:</p>
+<p>str_replace_all(test.vector, pattern=fixed(‘-’), replacement=fixed(‘:’) )</p>
+<p>Details on string manipulation:</p>
+<p><a href="https://dereksonderegger.github.io/570L/13-string-manipulation.html" class="uri">https://dereksonderegger.github.io/570L/13-string-manipulation.html</a></p>
+<p>We can do this to replace ABA with “Abated”</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">SF<span class="op">$</span>disposition1 &lt;-<span class="st"> </span><span class="kw">str_replace_all</span>(SF<span class="op">$</span>disposition1, <span class="dt">pattern=</span><span class="kw">fixed</span>(<span class="st">&#39;ABA&#39;</span>), <span class="dt">replacement=</span><span class="kw">fixed</span>(<span class="st">&#39;Abated&#39;</span>) )</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2"><span class="co">#Again with ADM</span></a>
+<a class="sourceLine" id="cb63-3" data-line-number="3">SF<span class="op">$</span>disposition1 &lt;-<span class="st"> </span><span class="kw">str_replace_all</span>(SF<span class="op">$</span>disposition1, <span class="dt">pattern=</span><span class="kw">fixed</span>(<span class="st">&#39;ADM&#39;</span>), <span class="dt">replacement=</span><span class="kw">fixed</span>(<span class="st">&#39;Admonished&#39;</span>) )</a></code></pre></div>
+<p>We can do that 19 times. OR….</p>
+<p>Look at this example using a lookup table to replace all the values<br />
+<a href="https://stackoverflow.com/questions/50615116/renaming-character-variables-in-a-column-in-data-frame-r" class="uri">https://stackoverflow.com/questions/50615116/renaming-character-variables-in-a-column-in-data-frame-r</a></p>
+<p>Build a table to translate the Cop Speak to English:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">dispo_lkup &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">ABA=</span><span class="st">&quot;Abated&quot;</span>, <span class="dt">ADM=</span><span class="st">&quot;Admonish&quot;</span>, <span class="dt">ADV=</span><span class="st">&quot;Advised&quot;</span>, <span class="dt">ARR=</span><span class="st">&quot;Arrest&quot;</span>, <span class="dt">CAN=</span><span class="st">&quot;Cancel&quot;</span>, <span class="dt">CSA=</span><span class="st">&quot;CPSA&quot;</span>, </a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">                <span class="dt">CIT=</span><span class="st">&quot;Cited&quot;</span>, <span class="dt">CRM=</span><span class="st">&quot;Criminal&quot;</span>, <span class="dt">GOA=</span><span class="st">&quot;Gone&quot;</span>, <span class="dt">HAN=</span><span class="st">&quot;Handled&quot;</span>, <span class="dt">NCR=</span><span class="st">&quot;No_Criminal&quot;</span>, <span class="dt">ND=</span><span class="st">&quot;No_Dispo&quot;</span>, </a>
+<a class="sourceLine" id="cb64-3" data-line-number="3">                <span class="dt">NOM=</span><span class="st">&quot;No_Merit&quot;</span>, <span class="dt">PAS=</span><span class="st">&quot;PlaceSecure&quot;</span>, <span class="dt">REP=</span><span class="st">&quot;Report&quot;</span>, <span class="dt">SFD=</span><span class="st">&quot;Medical&quot;</span>, <span class="dt">UTL=</span><span class="st">&quot;Unfound&quot;</span>, <span class="dt">VAS=</span><span class="st">&quot;Vehicle_Secure&quot;</span>, <span class="st">&#39;22&#39;</span>=<span class="st">&quot;Cancel&quot;</span>)</a>
+<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="co">#22=&quot;Cancel&quot; was handled differently because it is a numeric value: &#39;22&#39;=&quot;Cancel&quot;</span></a>
+<a class="sourceLine" id="cb64-5" data-line-number="5"><span class="co">#This scans &quot;disposition&quot;, finds ABA and replaces with Abated, finds ARR, replaces with Arrest, etc</span></a>
+<a class="sourceLine" id="cb64-6" data-line-number="6">SF<span class="op">$</span>disposition1 &lt;-<span class="st"> </span><span class="kw">as.character</span>(dispo_lkup[SF<span class="op">$</span>disposition])</a></code></pre></div>
+<p>Rerun Action with disposition1</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">Action &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(disposition1) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
+<p>Compare our renamed variables to the original disposition</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">Action &lt;-<span class="st"> </span>SF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(disposition1, disposition) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n))</a></code></pre></div>
+<p>We have codes not listed on the sheet</p>
+<p>NA Not recorded 4339</p>
+<p>Get rid of the space</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">SF<span class="op">$</span>disposition &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;Not recorded&quot;</span>, <span class="st">&quot;Not_Recorded&quot;</span>, SF<span class="op">$</span>disposition)</a></code></pre></div>
+<p>Add to the list</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">dispo_lkup &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">ABA=</span><span class="st">&quot;Abated&quot;</span>, <span class="dt">ADM=</span><span class="st">&quot;Admonish&quot;</span>, <span class="dt">ADV=</span><span class="st">&quot;Advised&quot;</span>, <span class="dt">ARR=</span><span class="st">&quot;Arrest&quot;</span>, <span class="dt">CAN=</span><span class="st">&quot;Cancel&quot;</span>, <span class="dt">CSA=</span><span class="st">&quot;CPSA&quot;</span>, </a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">                <span class="dt">CIT=</span><span class="st">&quot;Cited&quot;</span>, <span class="dt">CRM=</span><span class="st">&quot;Criminal&quot;</span>, <span class="dt">GOA=</span><span class="st">&quot;Gone&quot;</span>, <span class="dt">HAN=</span><span class="st">&quot;Handled&quot;</span>, <span class="dt">NCR=</span><span class="st">&quot;No_Criminal&quot;</span>, <span class="dt">ND=</span><span class="st">&quot;No_Dispo&quot;</span>, </a>
+<a class="sourceLine" id="cb68-3" data-line-number="3">                <span class="dt">NOM=</span><span class="st">&quot;No_Merit&quot;</span>, <span class="dt">PAS=</span><span class="st">&quot;PlaceSecure&quot;</span>, <span class="dt">REP=</span><span class="st">&quot;Report&quot;</span>, <span class="dt">SFD=</span><span class="st">&quot;Medical&quot;</span>, <span class="dt">UTL=</span><span class="st">&quot;Unfound&quot;</span>, </a>
+<a class="sourceLine" id="cb68-4" data-line-number="4">                <span class="dt">VAS=</span><span class="st">&quot;Vehicle_Secure&quot;</span>, <span class="st">&#39;22&#39;</span>=<span class="st">&quot;Cancel&quot;</span>, <span class="dt">Not_Recorded=</span><span class="st">&quot;NotRecorded&quot;</span>)</a></code></pre></div>
+<p>Rerun</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="part-2-cleaning-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="section-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/12-R_Data_Cleaning.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
