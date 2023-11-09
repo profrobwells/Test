@@ -104,6 +104,9 @@ as.Date converts to a date
 as.POSIXct converts to a full date and timestamp.
 So this code will convert alert_date codes to text:
 
+str_squish() removes whitespace at the start and end, and replaces all internal whitespace with a single space.
+Usage
+str_squish(string)
 
 For text cleaning, you can use the textclean package.
 https://cran.r-project.org/web/packages/textclean/textclean.pdf
@@ -129,7 +132,7 @@ Converting specific columns to numeric
 colnames(StudentLoans[10:102])
 StudentLoans[10:102] <- lapply(StudentLoans[10:102], as.numeric)
 
-mutate_at(3, ~replace_na(., 0)) %>% 
+mutate_at(3, ~replace_na(., 0)) 
 
 ### Removing Special Characters
 Remove special characters from earnings$TOTAL.EARNINGS column
