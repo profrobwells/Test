@@ -1,0 +1,101 @@
+---
+title: "Moley Newsweek"
+author: "Wells"
+date: "2023-12-27"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+install.packages("archiveRetriever", force = TRUE)
+library(archiveRetriever) # Systematically retrieving web data from the Internet Archive
+```
+
+```{r}
+nytimes_overview <- archive_overview(homepage = "https://www.nytimes.com/",
+                     startDate = "2020-10-01",
+                     endDate = "2020-12-31")
+
+
+nytimes_overview
+
+```
+
+
+```{r}
+newsweek_overview <- archive_overview(homepage = "https://www.newsweek.com/",
+                     startDate = "1937-01-01",
+                     endDate = "1939-12-31")
+
+
+newsweek_overview
+
+```
+
+
+```{r}
+nytimes_mementos <- retrieve_urls(homepage = "https://www.nytimes.com/",
+                     startDate = "2020-10-01",
+                     endDate = "2020-12-31")
+
+nytimes_mementos[1:10]
+#>  [1] "http://web.archive.org/web/20201001000041/https://www.nytimes.com/"
+#>  [2] "http://web.archive.org/web/20201002000016/http://nytimes.com/"     
+#>  [3] "http://web.archive.org/web/20201003000006/https://nytimes.com/"    
+#>  [4] "http://web.archive.org/web/20201004000201/https://www.nytimes.com/"
+#>  [5] "http://web.archive.org/web/20201005000047/http://nytimes.com/"     
+#>  [6] "http://web.archive.org/web/20201006000036/http://nytimes.com/"     
+#>  [7] "http://web.archive.org/web/20201007000202/https://www.nytimes.com/"
+#>  [8] "http://web.archive.org/web/20201008000222/https://www.nytimes.com/"
+#>  [9] "http://web.archive.org/web/20201009000201/https://www.nytimes.com/"
+#> [10] "http://web.archive.org/web/20201010000605/http://nytimes.com/"
+
+
+
+```
+
+
+```{r}
+newsweek_mementos <- retrieve_urls(homepage = "https://www.newsweek.com/",
+                     startDate = "1987-10-01",
+                     endDate = "1987-12-31")
+
+newsweek_mementos[1:10]
+
+
+```
+
+```{r}
+nytimes_links <- retrieve_links(ArchiveUrls = "http://web.archive.org/web/20201001000041/https://www.nytimes.com/")
+
+```
+
+
+```{r}
+
+newsweek_links<- retrieve_links(ArchiveUrls = "https://archive.org/details/sim_newsweek-us_1937-04-03_9_14")
+
+newsweek_links <- retrieve_urls(homepage = "https://www.newsweek.com/",
+                     startDate = "1937-01-01",
+                     endDate = "1939-12-31")
+
+,
+                               Paths = c(title = "//h1[@itemprop='headline']",
+                                         author = "//span[@itemprop='name']",
+                                         date = "//time//text()",
+                                         article = "//section[@itemprop='articleBody']//p"))
+  
+  
+  ArchiveUrls = "https://archive.org/details/pub_newsweek-us?query=Moley&sin=TXT&page=2&sort=-date&and%5B%5D=year%3A%5B1937+TO+1940%5D")
+```
+
+
+```{r}
+
+nytimes_article <- scrape_urls(Urls = "http://web.archive.org/web/20201001004918/https://www.nytimes.com/2020/09/30/opinion/biden-trump-2020-debate.html",
+                               Paths = c(title = "//h1[@itemprop='headline']",
+                                         author = "//span[@itemprop='name']",
+                                         date = "//time//text()",
+                                         article = "//section[@itemprop='articleBody']//p"))
+
+```
