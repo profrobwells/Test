@@ -1,0 +1,81 @@
+---
+title: "JJCHC"
+author: "Wells"
+date: "2025-02-18"
+output: html_document
+---
+```{r}
+library(tidyverse)
+library(googlesheets4)
+library(janitor)
+```
+
+#Import scores
+```{r}
+googlesheets4::gs4_deauth()
+library(googlesheets4)
+scores <- read_sheet("https://docs.google.com/spreadsheets/d/1Gyx_6ULfRUdYctw5v8aORTJTamNC6kqe0V6_rV9fMHM/edit?usp=sharing", skip=1) |> 
+  clean_names()
+```
+
+#Import names
+```{r}
+names <- read_sheet("https://docs.google.com/spreadsheets/d/1NxDbYJeU8TPx2edUMKhCTrDUeEV3zAwOna5Slfhknks/edit?usp=sharing", skip=1) |> 
+  clean_names() |> 
+  select(x1, author, email, institution, notes, phd_student)
+
+```
+cleaned_data <- cleaned_data %>%
+  mutate(cleaned_company = tolower(company_name)) %>%
+  mutate(cleaned_company = case_when(
+    str_detect(cleaned_company, "roehm") ~ "roehm_america",
+    str_detect(cleaned_company, "tyson") ~ "tyson",
+    # ... Add more cases here ...
+    TRUE ~ cleaned_company
+  ))
+#joined
+```{r}
+final <- scores |> 
+  inner_join(names, by=c("submission"="x1")) 
+
+
+
+final <- final[c(2,3,9,11,12,13,4,5,6,7,8,10,1,14,15)]
+
+final <- final |> 
+  mutate(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree = case_when(
+     str_detect(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree, "accept") ~ "5",
+     str_detect(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree, "reject") ~ "1",
+     str_detect(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree, "Unsure") ~ "2",
+       TRUE ~ as.character(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree)
+  )) |> 
+  arrange(desc(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree))
+
+write.csv(final, "final_scores.csv")
+
+```
+
+#Report
+
+```{r}
+
+final |> 
+  distinct(submission, .keep_all = TRUE) |> 
+  count(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree)
+
+#Exclude the 1,2 = 32 accepted
+
+#34 entries, 5 rejected
+```
+
+#Reject
+```{r}
+
+reject <- final |> 
+  filter(accept_for_presentation_1_strongly_disagree_3_neutral_5_strongly_agree < 3) |> 
+  arrange(desc(submission))
+
+write.csv(reject, "jjchc_reject.csv")
+
+```
+
